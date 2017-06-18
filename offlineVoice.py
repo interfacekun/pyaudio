@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+#-*- coding:utf-8 -*-
 import sys
 import os
 import fcntl
@@ -13,8 +14,10 @@ cmre='export LD_LIBRARY_PATH=/root/linux_voice/libs/RaspberryPi/ && /root/linux_
 #print "say:"+say
 print say
 def showSay():
-	f=open('/root/gpio/say.txt','w')
-	fcntl.flock(f, fcntl.LOCK_EX)
-	f.write(say)
-	fcntl.flock(f, fcntl.LOCK_UN)
+	# f=open('/root/gpio/say.txt','w')
+	# fcntl.flock(f, fcntl.LOCK_EX)
+	# f.write(say)
+	# fcntl.flock(f, fcntl.LOCK_UN)
+	cmd = 'python /root/pyaudio/showMsg.py 2$'+say
+	os.system(cmd)
 showSay()
